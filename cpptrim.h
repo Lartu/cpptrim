@@ -27,6 +27,12 @@ void trim(std::string & line){
             last = i+1;
             break;
         }
+        //--i will break with unsigned int when reaching 0, so we check
+        //if i == 0 and, if it is and it's not a space, we break
+        if(i == 0){
+            last = 0;
+            break;
+        }
     }
     
     //Trim the std::string
