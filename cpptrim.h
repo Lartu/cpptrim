@@ -6,7 +6,7 @@
 //Removes all trailing and ending whitespace from a string
 void trim(std::string & line){
     //If the std::string is empty
-    if(line.size() == 0) return;
+    if(line.empty()) return;
 
     //If the string has only one character
     if(line.size() == 1 && !std::isspace(line[0])) return;
