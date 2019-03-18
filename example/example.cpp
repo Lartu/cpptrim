@@ -1,25 +1,35 @@
-//Include CPPTrim
-#include "../cpptrim.h" 
+#include "../cpptrim.h"
+#include <algorithm> // std::copy
+#include <cstdlib> // EXIT_SUCCESS
+#include <iostream> // std::cout
 
-//Include other stuff
-#include <iostream>
 
-int main(){
-    //With spaces
-    std::string myString = "      Hello World!              ";
-    std::cout << "Untrimmed: '" << myString << "'" << std::endl;
-    trim(myString);
-    std::cout << "Trimmed: '" << myString << "'" << std::endl;
-    
-    //With tabs
-    myString = "   \t   Hello Tabs!     \t     \t        ";
-    std::cout << "Untrimmed: '" << myString << "'" << std::endl;
-    trim(myString);
-    std::cout << "Trimmed: '" << myString << "'" << std::endl;
-    
-    //With carriage retuns and page feeds
-    myString = "   \n   Hello CRLF!     \r     \n        ";
-    std::cout << "Untrimmed: '" << myString << "'" << std::endl;
-    trim(myString);
-    std::cout << "Trimmed: '" << myString << "'" << std::endl;
+void test(std::string str) {
+    std::string trimmed(str);
+    trim(trimmed);
+
+    std::string ltrimmed(str);
+    trim_left(ltrimmed);
+
+    std::string rtrimmed(str);
+    trim_right(rtrimmed);
+
+    std::cout << "=============" << std::endl;
+    std::cout << "Untrimmed    : \"" << str << "\"" << std::endl;
+    std::cout << "Trimmed      : \"" << trimmed << "\"" << std::endl;
+    std::cout << "Left Trimmed : \"" << ltrimmed << "\"" << std::endl;
+    std::cout << "Right Trimmed: \"" << rtrimmed << "\"" << std::endl;
+    std::cout << "=============" << std::endl << std::endl;
+}
+
+int main() {
+    test(" Hello Spaces! ");
+    test("\tHello TABs!\t");
+    test("\nHello LFs!\t");
+    test("\rHello CRs!\r");
+    test("\r\nHello CRLFs!\r\n");
+    test("\vHello VTs!\v");
+    test("\fHello FFs!\f");
+    test(" \t\n\v\f\rHello Whitespace! \t\n\v\f\r");
+    return EXIT_SUCCESS;
 }
