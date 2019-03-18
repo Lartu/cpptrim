@@ -6,13 +6,13 @@
 
 void test(std::string str) {
     std::string trimmed(str);
-    trim(trimmed);
+    cpptrim::trim(trimmed);
 
     std::string ltrimmed(str);
-    trim_left(ltrimmed);
+    cpptrim::trim_left(ltrimmed);
 
     std::string rtrimmed(str);
-    trim_right(rtrimmed);
+    cpptrim::trim_right(rtrimmed);
 
     std::cout << "=============" << std::endl;
     std::cout << "Untrimmed    : \"" << str << "\"" << std::endl;

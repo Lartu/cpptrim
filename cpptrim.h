@@ -2,6 +2,9 @@
 #define CPPTRIM
 #include <string>
 
+namespace cpptrim
+{
+
 // C++ std::isspace defines whitespace characters for the "C" local as any of
 // the following:
 // '  ' (0x20) space (SPC)
@@ -25,4 +28,5 @@ void trim(std::string& str) {
     trim_right(str);
 }
 
-#endif
+} // !namespace cpptrim
+#endif // !CPPTRIM
