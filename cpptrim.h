@@ -1,41 +1,28 @@
 #ifndef CPPTRIM
 #define CPPTRIM
 #include <string>
-#include <cctype>
 
-//Removes all trailing and ending whitespace from a string
-void trim(std::string & line){
-    //If the std::string is empty
-    if(line.empty()) return;
+// C++ std::isspace defines whitespace characters for the "C" local as any of
+// the following:
+// '  ' (0x20) space (SPC)
+// '\t' (0x09) horizontal tab (TAB)
+// '\n' (0x0a) newline (LF)
+// '\v' (0x0b) vertical tab (VT)
+// '\f' (0x0c) feed (FF)
+// '\r' (0x0d) carriage return (CR)
+static char const* spacechars = " \t\n\v\f\r";
 
-    //If the string has only one character
-    if(line.size() == 1 && !std::isspace(line[0])) return;
-
-    //Left trim
-    int first = 0;
-    for(unsigned int i = 0; i < line.size(); ++i){
-        if (!std::isspace(line[i])){
-            first = i;
-            break;
-        }
-    }
-
-    //Right trim
-    int last = 0;
-    for(unsigned int i = line.size()-1; i >= 0; --i){
-        if (!std::isspace(line[i])){
-            last = i+1;
-            break;
-        }
-        //--i will break with unsigned int when reaching 0, so we check
-        //if i == 0 and, if it is and it's not a space, we break
-        if(i == 0){
-            last = 0;
-            break;
-        }
-    }
-
-    //Trim the std::string
-    line = line.substr(first, last-first);
+void trim_left(std::string& str) {
+    str.erase(0, str.find_first_not_of(spacechars));
 }
+
+void trim_right(std::string& str) {
+    str.erase(str.find_last_not_of(spacechars) + 1);
+}
+
+void trim(std::string& str) {
+    trim_left(str);
+    trim_right(str);
+}
+
 #endif
